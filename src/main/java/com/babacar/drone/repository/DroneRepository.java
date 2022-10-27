@@ -1,6 +1,7 @@
 package com.babacar.drone.repository;
 
 import com.babacar.drone.entity.Drone;
+import com.babacar.drone.enums.State;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ public interface DroneRepository extends JpaRepository<Drone, String> {
     @Modifying
     @Query(value = "update Drone d set d.state = :state where  d.serialNumber= :serial_number")
     void setDroneState (@Param("state") String state, @Param("serial_number") String serial_number);
-    List<Drone> findDronesByState(@Param("state") String state);
+    List<Drone> findByState(State state);
     Drone findBySerialNumber(@Param("serial") String serial);
 
 }

@@ -35,7 +35,7 @@ public class DroneServiceImpl implements DroneService{
 
         RegisterDroneResponse droneResponse = new RegisterDroneResponse();
         droneResponse.setResponse("success");
-        droneResponse.setCode(200);
+        droneResponse.setCode(201);
         droneResponse.setSerialNumber(drone.getSerialNumber());
         droneResponse.setMessage("Drone created successfully!");
         droneResponse.setTimestamp(java.time.LocalDateTime.now());
@@ -51,8 +51,8 @@ public class DroneServiceImpl implements DroneService{
 
     @Override
     public AvailableDroneResponse getAvailableDronesForShipping() {
-        List<Drone> drones = droneRepository.findDronesByState(String.valueOf(State.IDLE));
-        return null;
+        List<Drone> drones = droneRepository.findByState(State.LOADING);
+        return new AvailableDroneResponse(drones.size(), java.time.LocalDateTime.now(), drones);
     }
 
     @Override

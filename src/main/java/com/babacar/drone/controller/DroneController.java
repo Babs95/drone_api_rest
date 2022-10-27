@@ -41,4 +41,10 @@ public class DroneController {
         DroneBatteryCheckResponse droneBatteryCheckResponse = droneService.getDroneBatteryLevel(serial);
         return new ResponseEntity<>(droneBatteryCheckResponse, HttpStatus.OK);
     }
+
+    @GetMapping(path= "/available", produces = "application/json")
+    public ResponseEntity<AvailableDroneResponse> getAvalaibleDrones() {
+        AvailableDroneResponse drones = droneService.getAvailableDronesForShipping();
+        return new ResponseEntity<AvailableDroneResponse>(drones, HttpStatus.OK);
+    }
 }
