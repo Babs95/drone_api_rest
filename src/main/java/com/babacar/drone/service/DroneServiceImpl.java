@@ -14,8 +14,11 @@ import java.util.List;
 public class DroneServiceImpl implements DroneService{
 
     private int BATTERY_LIMIT=25;
-    @Autowired
     private DroneRepository droneRepository;
+    @Autowired
+    public DroneServiceImpl(DroneRepository droneRepository){
+        this.droneRepository = droneRepository;
+    }
 
     @Override
     public RegisterDroneResponse register(Drone drone) {

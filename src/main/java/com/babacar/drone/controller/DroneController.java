@@ -18,18 +18,21 @@ import java.util.List;
 @RequestMapping(path="/api/drone/v1")
 @Validated
 public class DroneController {
-    @Autowired
     private DroneServiceImpl droneService;
+    @Autowired
+    public DroneController(DroneServiceImpl droneService){
+        this.droneService = droneService;
+    }
 
     @PostMapping(path="/register", consumes = "application/json", produces = "application/json")
     public ResponseEntity<RegisterDroneResponse> registerDrone(
-            @Valid @NotNull @RequestBody Drone dronerequest) {
+            @Valid @RequestBody Drone dronerequest) {
         RegisterDroneResponse newDrone = droneService.register(dronerequest);
         return new ResponseEntity<RegisterDroneResponse>(newDrone, HttpStatus.CREATED);
     }
 
     @GetMapping(path= "/drones", produces = "application/json")
-    public ResponseEntity<AvailableDroneResponse> getAvailableDroneForLoading() {
+    public ResponseEntity<AvailableDroneResponse> getAllDrones() {
         AvailableDroneResponse drones = droneService.getAllDrones();
         return new ResponseEntity<AvailableDroneResponse>(drones, HttpStatus.OK);
     }
