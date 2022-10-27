@@ -2,6 +2,7 @@ package com.babacar.drone.service;
 
 import com.babacar.drone.entity.Drone;
 import com.babacar.drone.payload.response.AvailableDroneResponse;
+import com.babacar.drone.payload.response.DroneBatteryCheckResponse;
 import com.babacar.drone.payload.response.RegisterDroneResponse;
 import org.springframework.stereotype.Component;
 
@@ -12,5 +13,6 @@ public interface DroneService {
     RegisterDroneResponse register(Drone drone);
     AvailableDroneResponse getAllDrones();
     AvailableDroneResponse getAvailableDronesForShipping();
+    DroneBatteryCheckResponse getDroneBatteryLevel(String serialNumber);
 
 }

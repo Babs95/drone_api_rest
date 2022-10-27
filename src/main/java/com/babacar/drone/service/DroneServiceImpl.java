@@ -3,6 +3,7 @@ package com.babacar.drone.service;
 import com.babacar.drone.entity.Drone;
 import com.babacar.drone.enums.State;
 import com.babacar.drone.payload.response.AvailableDroneResponse;
+import com.babacar.drone.payload.response.DroneBatteryCheckResponse;
 import com.babacar.drone.payload.response.RegisterDroneResponse;
 import com.babacar.drone.repository.DroneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,19 @@ public class DroneServiceImpl implements DroneService{
     public AvailableDroneResponse getAvailableDronesForShipping() {
         List<Drone> drones = droneRepository.findDronesByState(String.valueOf(State.IDLE));
         return null;
+    }
+
+    @Override
+    public DroneBatteryCheckResponse getDroneBatteryLevel(String serialNumber) {
+        Drone drone =droneRepository.findBySerialNumber(serialNumber);
+
+        DroneBatteryCheckResponse droneBatteryCheckResponse = new DroneBatteryCheckResponse();
+        droneBatteryCheckResponse.setResponse("success");
+        droneBatteryCheckResponse.setCode(200);
+        droneBatteryCheckResponse.setSerialNumber(drone.getSerialNumber());
+        droneBatteryCheckResponse.setBatteryLevel(drone.getBattery());
+        droneBatteryCheckResponse.setTimestamp(java.time.LocalDateTime.now());
+
+        return droneBatteryCheckResponse;
     }
 }

@@ -2,6 +2,7 @@ package com.babacar.drone.controller;
 
 import com.babacar.drone.entity.Drone;
 import com.babacar.drone.payload.response.AvailableDroneResponse;
+import com.babacar.drone.payload.response.DroneBatteryCheckResponse;
 import com.babacar.drone.payload.response.RegisterDroneResponse;
 import com.babacar.drone.service.DroneServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,11 @@ public class DroneController {
     public ResponseEntity<AvailableDroneResponse> getAllDrones() {
         AvailableDroneResponse drones = droneService.getAllDrones();
         return new ResponseEntity<AvailableDroneResponse>(drones, HttpStatus.OK);
+    }
+
+    @GetMapping(path= "/checkBatteryLevel/{serial}", produces = "application/json")
+    public ResponseEntity<DroneBatteryCheckResponse> checkDroneBatteryLevel(@PathVariable String serial) {
+        DroneBatteryCheckResponse droneBatteryCheckResponse = droneService.getDroneBatteryLevel(serial);
+        return new ResponseEntity<>(droneBatteryCheckResponse, HttpStatus.OK);
     }
 }
