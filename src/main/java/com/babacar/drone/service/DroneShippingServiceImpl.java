@@ -55,7 +55,7 @@ public class DroneShippingServiceImpl implements DroneShippingService{
             medications.add(medication);
         }
         if(totalWeight > drone.getWeightLimit())
-            return new RegisterDroneShippingResponse("Error", 404, "This drone can't be loaded because you exceed is weight limit "+drone.getWeightLimit()+", Your actual weight is: "+ totalWeight,"",0,0.0,"",new ArrayList(),java.time.LocalDateTime.now());
+            return new RegisterDroneShippingResponse("Error", 404, "This drone can't be loaded because you exceed is weight limit "+drone.getWeightLimit()+", Your actual weight is: "+ totalWeight,"",0,totalWeight,"",new ArrayList(),java.time.LocalDateTime.now());
 
         DroneShipping droneShipping = new DroneShipping();
         droneShipping.setShippingAddress(droneShippingRequest.getShippingAddress());
