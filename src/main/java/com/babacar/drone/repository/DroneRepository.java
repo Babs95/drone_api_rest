@@ -14,7 +14,7 @@ import java.util.List;
 public interface DroneRepository extends JpaRepository<Drone, String> {
     @Modifying
     @Query(value = "update Drone d set d.state = :state where  d.serialNumber= :serial_number")
-    void setDroneState (@Param("state") String state, @Param("serial_number") String serial_number);
+    void setDroneState (State state,String serial_number);
     List<Drone> findByState(State state);
     Drone findBySerialNumber(@Param("serial") String serial);
 
