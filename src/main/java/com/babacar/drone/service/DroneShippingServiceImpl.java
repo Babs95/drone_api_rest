@@ -47,7 +47,7 @@ public class DroneShippingServiceImpl implements DroneShippingService{
         //Get List of medications
         List<Medication> medications = new ArrayList<>();
         for (String code : droneShippingRequest.getMedications_code()) {
-            System.out.println("My code:" + code);
+            //System.out.println("My code:" + code);
             Medication medication = medicationRepository.findByCode(code);
             if(medication == null)
                 return new RegisterDroneShippingResponse("Error", 404, "This medication code: " + code + " does not exist, try another","",0,"",new ArrayList(),java.time.LocalDateTime.now());
@@ -62,6 +62,7 @@ public class DroneShippingServiceImpl implements DroneShippingService{
         droneShipping.setDroneSerialNum(drone.getSerialNumber());
         droneShipping.setTotalQuantity(medications.size());
         droneShipping.setMedications(medications);
+        droneShippingRepository.save(droneShipping);
 
         RegisterDroneShippingResponse droneShippingResponse = new RegisterDroneShippingResponse();
         droneShippingResponse.setResponse("success");
