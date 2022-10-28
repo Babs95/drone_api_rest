@@ -37,12 +37,12 @@ public class DroneShippingServiceImpl implements DroneShippingService{
         Drone drone = droneRepository.findBySerialNumber(droneShippingRequest.getDroneSerialNum());
 
         if(drone == null)
-            return new RegisterDroneShippingResponse("Error", 404, "Drone serialNumber does not exist, try another","",0,"",new ArrayList(),java.time.LocalDateTime.now());
+            return new RegisterDroneShippingResponse("Error", 404, "Drone serialNumber does not exist, try another","",0,0.0,"",new ArrayList(),java.time.LocalDateTime.now());
             //throw new RuntimeException("Drone serialNumber does not exist, try another one");
 
         //Check if Drone can be loaded
         if(drone.getState() != State.LOADING)
-            return new RegisterDroneShippingResponse("Error", 404, "This drone is not available, try another one","",0,"",new ArrayList(),java.time.LocalDateTime.now());
+            return new RegisterDroneShippingResponse("Error", 404, "This drone is not available, try another one","",0,0.0,"",new ArrayList(),java.time.LocalDateTime.now());
 
         //Get List of medications
         List<Medication> medications = new ArrayList<>();
@@ -50,17 +50,18 @@ public class DroneShippingServiceImpl implements DroneShippingService{
             //System.out.println("My code:" + code);
             Medication medication = medicationRepository.findByCode(code);
             if(medication == null)
-                return new RegisterDroneShippingResponse("Error", 404, "This medication code: " + code + " does not exist, try another","",0,"",new ArrayList(),java.time.LocalDateTime.now());
+                return new RegisterDroneShippingResponse("Error", 404, "This medication code: " + code + " does not exist, try another","",0,0.0,"",new ArrayList(),java.time.LocalDateTime.now());
             totalWeight += medication.getWeight();
             medications.add(medication);
         }
         if(totalWeight > drone.getWeightLimit())
-            return new RegisterDroneShippingResponse("Error", 404, "This drone can't be loaded because you exceed is weight limit "+drone.getWeightLimit()+", Your actual weight is: "+ totalWeight,"",0,"",new ArrayList(),java.time.LocalDateTime.now());
+            return new RegisterDroneShippingResponse("Error", 404, "This drone can't be loaded because you exceed is weight limit "+drone.getWeightLimit()+", Your actual weight is: "+ totalWeight,"",0,0.0,"",new ArrayList(),java.time.LocalDateTime.now());
 
         DroneShipping droneShipping = new DroneShipping();
         droneShipping.setShippingAddress(droneShippingRequest.getShippingAddress());
         droneShipping.setDroneSerialNum(drone.getSerialNumber());
         droneShipping.setTotalQuantity(medications.size());
+        droneShipping.setTotalWeight(totalWeight);
         droneShipping.setMedications(medications);
         droneShippingRepository.save(droneShipping);
 
@@ -71,6 +72,7 @@ public class DroneShippingServiceImpl implements DroneShippingService{
         droneShippingResponse.setMessage("Drone loaded successfully!");
         droneShippingResponse.setShippingAddress(droneShipping.getShippingAddress());
         droneShippingResponse.setQuantityTotal(droneShipping.getTotalQuantity());
+        droneShippingResponse.setTotalWeight(droneShipping.getTotalWeight());
         droneShippingResponse.setMedications(droneShipping.getMedications());
         droneShippingResponse.setTimestamp(java.time.LocalDateTime.now());
 

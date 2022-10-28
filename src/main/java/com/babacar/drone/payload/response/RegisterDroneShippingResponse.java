@@ -17,6 +17,7 @@ public class RegisterDroneShippingResponse {
     private String message;
     private String shippingAddress;
     private int quantityTotal;
+    private Double totalWeight;
     private String serialNumber;
     private List<Medication> medications;
     private LocalDateTime timestamp;

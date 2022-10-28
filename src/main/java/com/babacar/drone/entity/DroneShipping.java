@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
 import java.util.List;
 
 /**
@@ -29,6 +30,9 @@ public class DroneShipping {
 
     @Column(name="quantity_total")
     private Integer totalQuantity;
+
+    @Column(name="total_weight")
+    private Double totalWeight;
 
     @Column(name="drone_serial_num")
     private String droneSerialNum;
