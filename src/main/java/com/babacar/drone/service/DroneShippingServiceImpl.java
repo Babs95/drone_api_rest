@@ -6,6 +6,7 @@ import com.babacar.drone.entity.Medication;
 import com.babacar.drone.enums.State;
 import com.babacar.drone.payload.request.RegisterDroneShippingRequest;
 import com.babacar.drone.payload.response.AvailableDroneResponse;
+import com.babacar.drone.payload.response.DroneLoadedMedicationsResponse;
 import com.babacar.drone.payload.response.ErrorResponse;
 import com.babacar.drone.payload.response.RegisterDroneShippingResponse;
 import com.babacar.drone.repository.DroneRepository;
@@ -80,5 +81,17 @@ public class DroneShippingServiceImpl implements DroneShippingService{
         droneRepository.setDroneState(State.LOADED, drone.getSerialNumber());
 
         return droneShippingResponse;
+    }
+
+    @Override
+    public DroneLoadedMedicationsResponse getDroneLoadedMedications(String serial) {
+        DroneShipping droneShipping = droneShippingRepository.findByDroneSerialNum(serial);
+        DroneLoadedMedicationsResponse droneLoadedMedicationsResponse = new DroneLoadedMedicationsResponse();
+        droneLoadedMedicationsResponse.setResponse("success");
+        droneLoadedMedicationsResponse.setCode(200);
+        droneLoadedMedicationsResponse.setSerialNumber(droneShipping.getDroneSerialNum());
+        droneLoadedMedicationsResponse.setMedications(droneShipping.getMedications());
+        droneLoadedMedicationsResponse.setTimestamp(java.time.LocalDateTime.now());
+        return droneLoadedMedicationsResponse;
     }
 }

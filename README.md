@@ -5,16 +5,25 @@
 ## HOW TO BUILD AND RUN
 * Java 8
 * IntelliJ IDEA
-* H2 In-Memory Database
 * Clone the repo
 * Open with IntelliJ
 * Use Maven to download all dependencies
 * Build and run the project
 * Postman for api testing
+* H2 In-Memory Database : Navigate to this url to access http://localhost:9191/h2-console/
+  <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/XYhmmQ1g/Capture-d-cran-31.png' border='0' alt='Capture-d-cran-31'/></a>
 
 ## POSTMAN API TESTING
 * # DRONE
->Register a drone: Make a POST request on url : http://localhost:9191/api/drone/v1/register 
+>Register a drone: Make a POST request on url : http://localhost:9191/api/drone/v1/register
+
+The payload will have the following fields
+
+* serialNumber to identify th drone
+* model (Lightweight, Middleweight, Cruiserweight, Heavyweight)
+* weightLimit (Max 500)
+* battery level of the drone
+
 * {
   "serialNumber": "BAB56766784A6",
   "model": "Middleweight",
@@ -39,7 +48,7 @@
 
 <a href='https://postimg.cc/5jtjwsWZ' target='_blank'><img src='https://i.postimg.cc/1RG61dC5/get-Avalaible-Drones.png' border='0' alt='get-Avalaible-Drones'/></a>
 
->Checking battery level for a given drone: Make a GET request this url with the drone serialNumber as param : http://localhost:9191/api/drone/v1/checkBatteryLevel/BAB56766784A6
+>Checking battery level for a given drone: Make a GET request on this url with the drone serialNumber as param : http://localhost:9191/api/drone/v1/checkBatteryLevel/BAB56766784A6
 
 <a href='https://postimg.cc/WDLc41s2' target='_blank'><img src='https://i.postimg.cc/hGhDpXw7/Drone-Check-Battery.png' border='0' alt='Drone-Check-Battery'/></a>
 
@@ -95,3 +104,7 @@ The payload will have the following fields
 <a href='https://postimg.cc/yDnNGG9h' target='_blank'><img src='https://i.postimg.cc/W4cJdL1y/Capture-d-cran-27.png' border='0' alt='Capture-d-cran-27'/></a>
 * If you exceed the weight limit of the drone
   <a href='https://postimg.cc/p9zPH151' target='_blank'><img src='https://i.postimg.cc/8CncL2pD/Capture-d-cran-28.png' border='0' alt='Capture-d-cran-28'/></a>
+
+>Checking loaded medication items for a given drone: Make a GET request on this url with the drone serialNumber as param : http://localhost:9191/api/drone/v1/checkLoaded/ETDFD667
+
+<a href='https://postimg.cc/ftJ75Y6f' target='_blank'><img src='https://i.postimg.cc/vBvPYzhk/Capture-d-cran-30.png' border='0' alt='Capture-d-cran-30'/></a>
