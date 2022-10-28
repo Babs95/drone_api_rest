@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -38,7 +40,8 @@ public class DroneShipping {
     private String droneSerialNum;
 
     @Column(name="medications_loaded")
-    @OneToMany
+    @ManyToMany
     private List<Medication> medications;
+    //private Set<Medication> medications = new HashSet<>();
 
 }
