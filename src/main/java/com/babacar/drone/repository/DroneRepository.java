@@ -11,8 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 
-//@Transactional
-@Repository
+@Transactional
 public interface DroneRepository extends JpaRepository<Drone, String> {
     @Modifying
     @Query(value = "update Drone d set d.state = :state where  d.serialNumber= :serial_number")
