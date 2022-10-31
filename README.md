@@ -9,7 +9,7 @@
 * Open with IntelliJ
 * Use Maven to download all dependencies
 * Build and run the project
-* Postman for api testing
+* Postman for api testing : Use this link to download my postman collection for this project and import it : https://mega.nz/file/x6hVXDaL#ShbnQeuisjCZ0KxBHt7sxFv61IQJbTNSQCWGRJl4-HQ
 * H2 In-Memory Database : Navigate to this url to access http://localhost:9191/h2-console/
   <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/XYhmmQ1g/Capture-d-cran-31.png' border='0' alt='Capture-d-cran-31'/></a>
 >FOR UNIT TEST
