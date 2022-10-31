@@ -57,7 +57,7 @@ public class DroneServiceImpl implements DroneService{
 
     @Override
     public DroneBatteryCheckResponse getDroneBatteryLevel(String serialNumber) {
-        Drone drone =droneRepository.findBySerialNumber(serialNumber);
+        Drone drone = droneRepository.findBySerialNumber(serialNumber);
 
         DroneBatteryCheckResponse droneBatteryCheckResponse = new DroneBatteryCheckResponse();
         droneBatteryCheckResponse.setResponse("success");

@@ -12,6 +12,8 @@
 * Postman for api testing
 * H2 In-Memory Database : Navigate to this url to access http://localhost:9191/h2-console/
   <a href='https://postimages.org/' target='_blank'><img src='https://i.postimg.cc/XYhmmQ1g/Capture-d-cran-31.png' border='0' alt='Capture-d-cran-31'/></a>
+>FOR UNIT TEST
+* Change h2 Database scope from runtime to test
 
 ## POSTMAN API TESTING
 * # DRONE
@@ -108,3 +110,4 @@ The payload will have the following fields
 >Checking loaded medication items for a given drone: Make a GET request on this url with the drone serialNumber as param : http://localhost:9191/api/drone/v1/checkLoaded/ETDFD667
 
 <a href='https://postimg.cc/ftJ75Y6f' target='_blank'><img src='https://i.postimg.cc/vBvPYzhk/Capture-d-cran-30.png' border='0' alt='Capture-d-cran-30'/></a>
+
